@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.6;
+  background: #f8f9fa;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Estilo para a página inicial */
+.home-page .hero {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.home-page h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
+.home-page .hero p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 30px;
+}
+
+.search-form {
+  margin: 40px auto;
+  max-width: 600px;
+  display: flex;
+}
+
+.search-input {
+  flex: 1;
+  padding: 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.search-button {
+  padding: 0 25px;
+  background: #FF4500;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.search-button:hover {
+  background: #ff5722;
+}
+
+/* Seção Como Funciona */
+.how-it-works {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.how-it-works h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.how-it-works .section-description {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto 40px;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.step {
+  flex: 1;
+  padding: 30px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+}
+
+.step h3 {
+  margin: 15px 0;
+  color: #6a11cb;
+}
+
+@media (max-width: 768px) {
+  .steps {
+    flex-direction: column;
+  }
+  .step {
+    margin: 15px 0;
+  }
+}

@@ -1,0 +1,221 @@
+/* Estilos para a página de perfil */
+.profile-page {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding-top: 80px; /* Espaço para o header fixo */
+}
+
+.profile-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.profile-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.profile-header h2 {
+  font-size: 2.2rem;
+  margin: 10px 0;
+  color: #333;
+}
+
+.instagram-handle {
+  color: #6a11cb;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.profile-details {
+  margin: 30px 0;
+}
+
+.detail-item {
+  display: flex;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-item label {
+  flex: 1;
+  font-weight: 600;
+  color: #555;
+}
+
+.detail-item span {
+  flex: 2;
+}
+
+.profile-actions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-edit {
+  background-color: #6a11cb;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 5px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-edit:hover {
+  background-color: #5b0fb0;
+}
+
+/* Estilos para o modo de edição */
+.profile-edit {
+  padding: 20px 0;
+}
+
+.profile-edit h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #6a11cb;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.1);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn-cancel {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.btn-save {
+  background-color: #6a11cb;
+  color: white;
+}
+
+.btn-back {
+  background-color: transparent;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+.success-message {
+  background-color: #e7f9f0;
+  color: #2ecc71;
+  padding: 12px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.error-message {
+  background-color: #fff2f2;
+  color: #e74c3c;
+  padding: 12px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .profile-card {
+    padding: 25px;
+  }
+  
+  .profile-avatar {
+    width: 90px;
+    height: 90px;
+    font-size: 2.5rem;
+  }
+  
+  .profile-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .detail-item {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .detail-item label {
+    margin-bottom: 5px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .btn-cancel, .btn-save {
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+  }
+}
