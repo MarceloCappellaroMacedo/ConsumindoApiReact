@@ -1,0 +1,137 @@
+.influencers-page {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.influencers-container {
+  padding: 80px 0;
+}
+
+.influencers-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.influencers-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.influencers-header p {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.search-filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.search-box {
+  flex: 1;
+  max-width: 400px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.filter-options {
+  display: flex;
+  gap: 15px;
+}
+
+.sort-select {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.influencers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.influencer-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.influencer-card:hover {
+  transform: translateY(-5px);
+}
+
+.influencer-avatar {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px;
+  font-size: 2rem;
+  color: white;
+}
+
+.influencer-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.instagram-handle {
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.btn-view-profile {
+  width: 100%;
+  padding: 10px;
+  background-color: #6a11cb;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-view-profile:hover {
+  background-color: #5b0fb0;
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .search-filter-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .search-box {
+    max-width: 100%;
+  }
+}
