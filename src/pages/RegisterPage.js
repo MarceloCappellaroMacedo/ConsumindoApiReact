@@ -42,7 +42,7 @@ const RegisterPage = () => {
       
       // Dados para API
       const userData = {
-        name: formData.name,
+        nome: formData.name,
         email: formData.email,
         perfilInstagram: formData.perfilInstagram,
         senha: formData.senha

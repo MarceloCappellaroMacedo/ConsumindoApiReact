@@ -1,117 +1,99 @@
 import axios from 'axios';
 
 // URL base da API
-const API_URL = 'http://localhost:8080/api';
+const API_URL = 'http://sua-api-url/api';
 
-// Configuração do axios
+// Criar instância do axios
 const api = axios.create({
-  baseURL: API_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  baseURL: API_URL
 });
 
-// Adicionar interceptor para tratamento de erros
-const apiWithErrorHandling = axios.create({
-  baseURL: API_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-// Interceptor para tratamento de erros
-apiWithErrorHandling.interceptors.response.use(
-  response => response,
-  error => {
-    // Tratamento de erro personalizado
-    if (error.response) {
-      // O servidor respondeu com um código de status fora do intervalo 2xx
-      console.error("Erro de resposta:", error.response.data);
-    } else if (error.request) {
-      // A requisição foi feita mas nenhuma resposta foi recebida
-      console.error("Erro de requisição:", error.request);
-    } else {
-      // Algo aconteceu na configuração da requisição que disparou um erro
-      console.error("Erro:", error.message);
+// Interceptador para adicionar token de autenticação em todas as requisições
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
+    return config;
+  },
+  (error) => {
     return Promise.reject(error);
   }
 );
 
-// Serviços para influenciadores
-const influencerService = {
-  getAll: async () => {
-    try {
-      const response = await api.get('/influencers');
-      return response.data;
-    } catch (error) {
-      console.error('Erro ao buscar influenciadores:', error);
-      throw error;
-    }
+// Serviço para influencers
+export const influencerService = {
+  // Autenticação
+  login: async (credentials) => {
+    const response = await api.post('/auth/login', credentials);
+    return response.data;
   },
   
+  register: async (userData) => {
+    const response = await api.post('/auth/register', userData);
+    return response.data;
+  },
+  
+  // Operações com influencers
   getById: async (id) => {
-    try {
-      const response = await api.get(`/influencers/${id}`);
-      return response.data;
-    } catch (error) {
-      console.error(`Erro ao buscar influenciador com ID ${id}:`, error);
-      throw error;
-    }
+    const response = await api.get(`/influencers/${id}`);
+    return response.data;
   },
   
-  create: async (influencer) => {
-    try {
-      const response = await api.post('/influencers', influencer);
-      return response.data;
-    } catch (error) {
-      console.error('Erro ao criar influenciador:', error);
-      throw error;
-    }
+  update: async (id, data) => {
+    const response = await api.put(`/influencers/${id}`, data);
+    return response.data;
   },
   
-  update: async (id, influencer) => {
-    try {
-      const response = await api.put(`/influencers/${id}`, influencer);
-      return response.data;
-    } catch (error) {
-      console.error(`Erro ao atualizar influenciador com ID ${id}:`, error);
-      throw error;
-    }
-  },
-  
-  remove: async (id) => {
-    try {
-      const response = await api.delete(`/influencers/${id}`);
-      return response.data;
-    } catch (error) {
-      console.error(`Erro ao excluir influenciador com ID ${id}:`, error);
-      throw error;
-    }
+  // Adicione outros métodos conforme necessário
+};
+
+// Serviço com tratamento de erro
+export const apiWithErrorHandling = {
+  influencer: {
+    getById: async (id) => {
+      try {
+        return await influencerService.getById(id);
+      } catch (error) {
+        handleApiError(error);
+        throw error;
+      }
+    },
+    
+    update: async (id, data) => {
+      try {
+        return await influencerService.update(id, data);
+      } catch (error) {
+        handleApiError(error);
+        throw error;
+      }
+    },
+    
+    // Mais métodos aqui
   }
 };
 
-// Funções individuais (mantendo compatibilidade)
-export const getAll = async () => {
-  return influencerService.getAll();
-};
+// Função auxiliar para tratar erros
+function handleApiError(error) {
+  if (error.response) {
+    // O servidor respondeu com um status fora do intervalo 2xx
+    console.error('Erro de resposta:', error.response.data);
+    console.error('Status:', error.response.status);
+    
+    // Se for erro de autenticação, redirecionar para login
+    if (error.response.status === 401) {
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+      // Se estiver usando react-router, você pode redirecionar aqui
+    }
+  } else if (error.request) {
+    // A requisição foi feita mas não houve resposta
+    console.error('Erro de requisição:', error.request);
+  } else {
+    // Algo aconteceu na configuração da requisição
+    console.error('Erro:', error.message);
+  }
+}
 
-export const getById = async (id) => {
-  return influencerService.getById(id);
-};
-
-export const create = async (influencer) => {
-  return influencerService.create(influencer);
-};
-
-export const update = async (id, influencer) => {
-  return influencerService.update(id, influencer);
-};
-
-export const remove = async (id) => {
-  return influencerService.remove(id);
-};
-
-// Exportar tudo o que está sendo usado em outros arquivos
-export { influencerService, apiWithErrorHandling };
 export default api;

@@ -14,7 +14,7 @@ const ProfilePage = () => {
   const [error, setError] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
+    nome: '',
     email: '',
     perfilInstagram: '',
     senha: ''
@@ -27,7 +27,7 @@ const ProfilePage = () => {
         const data = await apiWithErrorHandling.influencer.getById(id);
         setInfluencer(data);
         setFormData({
-          name: data.name,
+          nome: data.nome,
           email: data.email,
           perfilInstagram: data.perfilInstagram,
           senha: '' // Não exibimos a senha por segurança
@@ -59,7 +59,7 @@ const ProfilePage = () => {
 
     // Só enviar campos não vazios
     const updateData = {};
-    if (formData.name) updateData.name = formData.name;
+    if (formData.nome) updateData.nome = formData.nome;
     if (formData.email) updateData.email = formData.email;
     if (formData.perfilInstagram) updateData.perfilInstagram = formData.perfilInstagram;
     if (formData.senha) updateData.senha = formData.senha;
@@ -120,8 +120,8 @@ const ProfilePage = () => {
           {!isEditing ? (
             <div className="profile-view">
               <div className="profile-header">
-                <div className="profile-avatar">{influencer?.name?.charAt(0)}</div>
-                <h2>{influencer?.name}</h2>
+                <div className="profile-avatar">{influencer?.nome?.charAt(0)}</div>
+                <h2>{influencer?.nome}</h2>
                 <p className="instagram-handle">{influencer?.perfilInstagram}</p>
               </div>
               
@@ -153,12 +153,12 @@ const ProfilePage = () => {
               
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="name">Nome</label>
+                  <label htmlFor="nome">Nome</label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
+                    id="nome"
+                    name="nome"
+                    value={formData.nome}
                     onChange={handleChange}
                     required
                   />
