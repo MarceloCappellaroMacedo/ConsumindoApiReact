@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // URL base da API
-const API_URL = 'http://sua-api-url/api';
+const API_URL = 'http://localhost:8080/api';
 
 // Criar instância do axios
 const api = axios.create({
@@ -36,6 +36,11 @@ export const influencerService = {
   },
   
   // Operações com influencers
+  getAll: async () => {
+    const response = await api.get('/influencers');
+    return response.data;
+  },
+  
   getById: async (id) => {
     const response = await api.get(`/influencers/${id}`);
     return response.data;
@@ -52,6 +57,15 @@ export const influencerService = {
 // Serviço com tratamento de erro
 export const apiWithErrorHandling = {
   influencer: {
+    getAll: async () => {
+      try {
+        return await influencerService.getAll();
+      } catch (error) {
+        handleApiError(error);
+        throw error;
+      }
+    },
+    
     getById: async (id) => {
       try {
         return await influencerService.getById(id);

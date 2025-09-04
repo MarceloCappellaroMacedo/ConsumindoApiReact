@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 // Importando apiWithErrorHandling em vez de getAll diretamente
 import { apiWithErrorHandling } from '../services/api';
 import InfluencerCard from '../components/search/InfluencerCard';
-import { useAuth } from '../context/AuthContext';
 import '../styles/influencers.css';
 
 const InfluencersPage = () => {
-  const { isAuthenticated, currentUser, logout } = useAuth();
-  const navigate = useNavigate();
   const [influencers, setInfluencers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
